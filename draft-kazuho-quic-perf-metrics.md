@@ -63,7 +63,7 @@ There are three primary benefits in the approach:
 * Observation becomes an active action rather than passive, giving the endpoints a chance to record observation attempts as well as rejecting undesirable ones.
 * Observation becomes accurate due to the endpoints' knowledge of what is being exchanged encypted.
 * Flexibility against issues (both performance- and privacy-related) that might arise in the future, since bits for observation no longer exists hard-coded in each packet.
-  The metrics protocol can evolve indenpendently to the QUIC transport protocol.
+  The metrics protocol can evolve independently to the QUIC transport protocol.
 
 # Overview
 
@@ -188,7 +188,7 @@ SRTT field and RTTVAR field indicates the smoothed round-trip time and the RTT v
 
 Distances field contains a sequence of integers representing the distances between the packets specified by the request.
 
-The field contains one less elements than the corresonponding Packet Fingerprint field.
+The field contains one less elements than the corresponding Packet Fingerprint field.
 Nth element of the Distances field corresponds to the distance between the Nth element and the N+1th element of the Packet Fingerprint field.
 
 Distance between two packets (A and B) is defined as following:
@@ -208,7 +208,7 @@ By observing the packet, the on-path device that sent the request can determine 
 
 ## DENY Subtype
 
-A METRICS packet of subtype DENY (0x2) is sent by a QUIC server to inidicate its unwillingness to provide performance metrics.
+A METRICS packet of subtype DENY (0x2) is sent by a QUIC server to indicate its unwillingness to provide performance metrics.
 
 There is no payload for the subtype.
 
@@ -233,7 +233,7 @@ A server can easily calculate the distances if it records the packet numbers of 
 On the other hand, a server can calculate the distances by retaining very little state if it is implemented following the criteria shown below.
 
 * record the packet number of the first packet sent after switching to the current path
-* use a deterministic function (such as a keyed hash function) to determine when to skip a packet number as a mitigitation against opportunistic ACK attacks
+* use a deterministic function (such as a keyed hash function) to determine when to skip a packet number as a mitigation against opportunistic ACK attacks
 * record the packet numbers of packets that were exchanged on a prepared path (i.e. packet numbers of PATH_CHALLENGE and PATH_RESPONSE)
 
 The distance can be calculated as a subtraction of two packet numbers, further subtracted by the number of skips and the number of packets used for preparing new paths.
